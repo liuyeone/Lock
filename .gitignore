@@ -1,0 +1,5 @@
+# Created by .ignore support plugin (hsz.mobi)
+/lock.iml
+/.idea/
+/target/
+*.xml
