@@ -96,6 +96,13 @@
         from account_wallet
         where id = #{id,jdbcType=INTEGER}
     </select>
+    <select id="selectByPrimaryKeyForPessimistic" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from account_wallet
+        where id = #{id,jdbcType=INTEGER}
+        for update
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from account_wallet
     where id = #{id,jdbcType=INTEGER}

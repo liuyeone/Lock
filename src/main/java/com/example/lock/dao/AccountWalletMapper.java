@@ -25,6 +25,8 @@ public interface AccountWalletMapper {
 
     AccountWallet selectByPrimaryKey(Integer id);
 
+    AccountWallet selectByPrimaryKeyForPessimistic(Integer id);
+
     int updateByExampleSelective(@Param("record") AccountWallet record, @Param("example") AccountWalletExample example);
 
     int updateByExample(@Param("record") AccountWallet record, @Param("example") AccountWalletExample example);
