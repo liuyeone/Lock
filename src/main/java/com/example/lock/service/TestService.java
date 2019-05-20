@@ -1,8 +1,10 @@
 package com.example.lock.service;
 
+import com.example.lock.annotation.RetryOnOptimisticLockingFailure;
 import com.example.lock.dao.AccountWalletMapper;
 import com.example.lock.entity.AccountWallet;
 import com.example.lock.entity.AccountWalletExample;
+import com.example.lock.exception.ObjectOptimisticLockingFailureException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +30,11 @@ public class TestService {
         }
     }
 
-    public Integer updateAccountWallet(AccountWallet wallet) {
-        return accountWalletMapper.updateAccountWallet(wallet);
+    public Integer updateAccountWallet(AccountWallet wallet) throws Exception {
+        Integer editNum = accountWalletMapper.updateAccountWallet(wallet);
+        if (0 == editNum) {
+            throw new ObjectOptimisticLockingFailureException();
+        }
+        return editNum;
     }
 }

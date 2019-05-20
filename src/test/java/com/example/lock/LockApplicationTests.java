@@ -51,6 +51,13 @@ public class LockApplicationTests {
 
     @Test
     public void contextLoads() {
+        optimisticLock();
+    }
+
+    /**
+     * 乐观锁测试
+     */
+    public void optimisticLock() {
         CountDownLatch latch = new CountDownLatch(1);//模拟5人并发请求，用户钱包
 
         for (int i = 0; i < 5; i++) {//模拟5个用户
@@ -62,7 +69,7 @@ public class LockApplicationTests {
 
 
         try {
-            Thread.sleep(10000);
+            Thread.sleep(15000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
